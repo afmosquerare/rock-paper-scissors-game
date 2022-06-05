@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Piedra, papel o tijera</title>
+</head>
+<body >
+    <main id="particles-js">
+        <div id="play">
+            <p>PLAY</p>
+        </div>
+        <section class="main-container" >
+
+             <!-- Parte Superior-->
+            <section class="contador">
+                <span>Player 1</span>
+                <div class="count-container">
+                    <span id="user-count">0</span>
+                    <span>/</span>
+                    <span id="computer-count">0</span>
+                </div>
+                <span>Computer</span>
+            </section>
+
+             <!-- Parte medio-->
+            <section class="game" id="gameSection">
+
+                <div class="main-versus">
+
+                    <div class="seleccion-user">
+                        <img src="" alt="" id="user-select" width="120px">
+                    </div>
+                    <div id="mensaje-container">
+                        <p id="mensaje">Escoge una opción</p>
+                    </div>
+                    <div class="versus">
+                        <img src="./assets/img/versus.png" width="200px">
+                    </div>
+                    <div class="seleccion-computer">
+                        <img src="" alt="" id="computer-select" width="120px">
+                    </div>
+                </div>
+                <div class="play-button.container">
+                    <button id="play-button">
+                        PLAY
+                    </button>
+                </div>
+            </section>
+
+    <!-- Parte inferior-->
+            <section class="cards-container">
+                <div class="piedra card "></div>
+                <div class="papel card"></div>
+                <div class="tijera card"></div>
+            </section>
+        <section>
+    
+    </main>
+    <script src="./assets/particles.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>

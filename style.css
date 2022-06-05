@@ -1,0 +1,191 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#particles.js{
+  width: 100%;
+  height: 100%;
+}
+:root{
+  --primary-color: #0ba759;
+  --active-color: #064c29;
+  --white: #fff;
+  --black: #000;
+}
+body{
+  font-family: JetBrains Mono, 'Times New Roman', Times, serif;
+  background-color: var(--black);
+  color: var(--primary-color);
+} 
+#play{
+position: absolute;
+width: 180px;
+height: 85px;
+left: 0;
+right: 0;
+bottom: 20px;
+top: 0;
+margin: auto;
+text-align: center;
+font-size: 4rem;
+cursor: pointer;
+}
+#play p{
+  text-shadow: 0 1px 15px;
+}
+#play:hover{
+  background-color: var(--primary-color);
+  color: var(--black);
+  border-radius: 10px ;
+}
+.contador{
+  position: absolute;
+  width: 95%;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-evenly;  
+  text-shadow: 0 1px 12px;
+}
+.main-container{
+  position: absolute;
+  right: 0;
+  left: 0;
+  padding: 30px;
+  width: 900px;
+  margin: auto;
+  text-align: center;
+  height: auto;
+  transform: translateY(-120%);
+}
+
+
+
+.count-container span, .contador span{
+  font-size: 2rem;
+}
+.game{
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 400px;
+}
+
+.cards-container{
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: 40px;
+  height: 100px;
+  transform: translateX(-120%);
+}
+.card{
+  width: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  
+}
+.piedra{
+  background-image: url('./assets/img/piedra.png');
+}
+.papel{
+  background-image: url('./assets/img/papel.png');
+}
+.tijera{
+  background-image: url('./assets/img/tijera.png');
+}
+.card:hover{
+  background-color: rgb(0, 96, 19)
+}
+
+.card:active{
+  background-color:var(--active-color);
+}
+.mensaje-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game #mensaje{
+  font-size: 2rem;
+  display: block;
+  text-shadow: 0 1px 11px;
+}
+.main-versus{
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: space-evenly;
+}
+.seleccion-user,.seleccion-computer{
+  padding-top: 20px;
+  width: 300px;
+  height: auto;
+  background-position: center;
+}
+.versus{
+  width: 0;
+  transform: translateY(-200%);
+}
+
+
+#play-button{
+  margin-top: 30px;
+  width: 150px;
+  height: 35px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--black);
+  color: var(--primary-color);
+  cursor: pointer;  
+  border-radius: 5px;
+}
+#play-button:hover{
+  background-color: var(--primary-color);
+  color:  var(--black);
+  box-shadow: 0 0 10px var(--primary-color);
+}
+#play-button:active{
+  background-color: var(--active-color);
+  box-shadow: 0 0 10px var(--active-color);
+  border-color: var(--active-color);;
+}
+
+.display-block{
+  display: block;
+}
+.display-none{
+  display: none; 
+ }
+ .width{
+   width: 150px;
+   margin-right: 50px;
+ }
+ .transitioned{
+  transform: translateY(-0%);
+  transition-property: all;
+  transition-duration: 1.6s;
+}
+.transitioned-versus{
+  transform: translateY(-20%);
+  transition-property: transform;
+  transition-duration: .6s;
+}
+.transitionCards{
+  transform: translateX(0%);
+  transition-property: transform;
+  transition-duration: 1s;
+}
+.transitionedInverse{
+  transform: translateY(-200%);
+}
+.red{
+  color: red;
+}
