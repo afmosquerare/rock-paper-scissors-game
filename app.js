@@ -1,4 +1,4 @@
-//Guardando en variables lo necesario del DOM;
+//Guardando en variables necesarias del DOM;
 const play = document.getElementById("play");
 const mainContainer = document.querySelector(".main-container");
 const puntajeUser = document.getElementById("user-count");
@@ -13,7 +13,11 @@ const versus = document.querySelector(".versus");
 const seleccionComputer = document.getElementById("computer-select");
 const playButton = document.getElementById("play-button");
 const gameSection = document.getElementById("gameSection");
+const listaIntentos = document.getElementById("lista_intentos");
+const listaContainer = document.querySelector(".lista");
+
 var reiniciarPuntaje = false;
+
 particlesJS.load('particles-js', './assets/particles.json', function() {
     console.log("particles worked");
 });  
@@ -59,6 +63,10 @@ const eventCard = ()=>{
 }
 playStart();
 eventCard();
+let ganador = [];
+let eleccion = [];
+let contadorLista = 1;
+let rondas = 1;
 
 //poner a funcionar el boton play
 playButton.addEventListener("click", ()=>{
@@ -68,7 +76,7 @@ playButton.addEventListener("click", ()=>{
     mensaje.textContent = "";
     versus.classList.toggle("width");
     versus.classList.toggle("transitioned-versus");
-    cardContainer.classList.toggle("transitionCards")
+    cardContainer.classList.toggle("display-none")
     playButton.classList.toggle("display-none");
     //generar imagenes entre intervalos.
     let contador = 0;
@@ -102,12 +110,18 @@ playButton.addEventListener("click", ()=>{
                 if(opcionComputer == "tijera"){
                   win = "La piedra aplasta la tijera. (Gana la piedra)";
                   puntajeUser.textContent = parseInt(puntajeUser.textContent)+1
+                  ganador[contadorLista] = "Player 1";
+                  eleccion[contadorLista] = "Piedra";
                 }
                 else if(opcionComputer == "papel"){
                   win = "El papel envuelve la piedra. (Gana el papel)";
                   puntajeComputer.textContent = parseInt(puntajeComputer.textContent)+1;
+                  ganador[contadorLista] = "Computer";
+                  eleccion[contadorLista] = "Papel";
                 }
                 else{
+                  eleccion[contadorLista] = "Piedra";
+                  ganador[contadorLista] = "Ninguno (empate)";
                   win = "¡EMPATE!";
                 }
               }
@@ -116,14 +130,20 @@ playButton.addEventListener("click", ()=>{
                 if(opcionComputer == "piedra"){
                   win = "El papel envuelve la piedra. (Gana el papel)";
                   puntajeUser.textContent = parseInt(puntajeUser.textContent)+1
+                  ganador[contadorLista] = "Player 1";
+                  eleccion[contadorLista] = "Papel";
                   
                 }
                 else if(opcionComputer == "tijera"){
                   win = "La tijera corta el papel. (Gana la tijera)";
                   puntajeComputer.textContent = parseInt(puntajeComputer.textContent)+1;
-                  
+                  ganador[contadorLista] = "Computer";
+                  eleccion[contadorLista] = "Tijeras";
+    
                 }
                 else{
+                  ganador[contadorLista] = "Ninguno (empate)";
+                  eleccion[contadorLista] = "Papel";
                   win = "¡EMPATE!";
                 }
               }
@@ -131,26 +151,46 @@ playButton.addEventListener("click", ()=>{
                 if(opcionComputer == "papel"){
                   win = "La tijera corta el papel. (Gana la tijera)";
                   puntajeUser.textContent = parseInt(puntajeUser.textContent)+1;
+                  ganador[contadorLista] = "Player 1";
+                  eleccion[contadorLista] = "Tijeras";
                   
                 }
                 else if(opcionComputer == "piedra"){
                   win = "La piedra aplasta la tijera. (Gana la piedra)";
                   puntajeComputer.textContent = parseInt(puntajeComputer.textContent)+1;
+                  ganador[contadorLista] = "Computer";
+                  eleccion[contadorLista] = "Piedra";
                   
                 }
                 else{
+                  ganador[contadorLista] = "Ninguno (empate)";
+                  eleccion[contadorLista] = "Tijeras";
                   win = "¡EMPATE!";
                 }
               }
+              let item = document.createElement("li");
+              item.textContent = `${contadorLista} - ${ganador[contadorLista]} - ${eleccion[contadorLista]}`;
+              contadorLista+=1;
+              listaIntentos.insertAdjacentElement("beforeend",item);
               //Verificar el puntaje.
               if(parseInt(puntajeUser.textContent) === 2){
+                let item = document.createElement("li");
+                item.textContent = `<b>Ganador ronda ${rondas}: Player 1</b>`;
+                listaIntentos.insertAdjacentElement("beforeend",item);
                 win = "¡FELICIDADES, GANASTE!";
                 reiniciarPuntaje = true;
+                rondas+=1;
               }
               if (parseInt(puntajeComputer.textContent) === 2){
-                win = "PERDISTE";
+                let item = document.createElement("li");
+                item.textContent = `Ganador ronda ${rondas}: Computer`;
+                item.classList.add("red");
+                listaIntentos.insertAdjacentElement("beforeend",item);
+                win = "¡PERDISTE!";
                 reiniciarPuntaje = true;
+                rondas+=1;
               }
+              
               //retorna quien y que ganó.
               return win;
             }
@@ -172,7 +212,7 @@ playButton.addEventListener("click", ()=>{
   }
   
 })
-//funcion para reiniciar el juego.
+
 function reiniciarJuego(win){
   mensajeContainer.classList.toggle("display-none");
   versus.classList.toggle("transitioned-versus");
@@ -190,8 +230,17 @@ function reiniciarJuego(win){
     mensaje.textContent = "Escoge una opción";
     opcionUser = "";
 
-    cardContainer.classList.toggle("transitionCards");
+    cardContainer.classList.toggle("display-none");
     playButton.classList.toggle("display-none");
-  },2400)
+  },2000)
 
 }
+
+window.addEventListener("keydown",(e)=>{
+  if(e.key == "n"){
+    mainContainer.classList.toggle("display-none");
+    listaContainer.classList.toggle("display-none");
+  }
+  
+
+})
