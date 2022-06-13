@@ -175,7 +175,7 @@ playButton.addEventListener("click", ()=>{
               //Verificar el puntaje.
               if(parseInt(puntajeUser.textContent) === 2){
                 let item = document.createElement("li");
-                item.textContent = `<b>Ganador ronda ${rondas}: Player 1</b>`;
+                item.textContent = `Ganador ronda ${rondas}: Player 1`;
                 listaIntentos.insertAdjacentElement("beforeend",item);
                 win = "¡FELICIDADES, GANASTE!";
                 reiniciarPuntaje = true;
